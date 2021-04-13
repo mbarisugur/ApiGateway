@@ -1,0 +1,42 @@
+{
+  "ReRoutes": [
+    //GetUser from ...https://localhost:44315/api/User/getUsers
+    {
+      "DownstreamPathTemplate": "/api/user/getUsers",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44315"
+        }
+      ],
+      "UpstreamPathTemplate": "/Users",
+      "UpstreamHttpMethod": "Get",
+      "Key": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/api/user/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44315"
+        }
+      ],
+      "UpstreamPathTemplate": "/Login",
+      "UpstreamHttpMethod": "Post",
+      "Key": "Login"
+    }
+  ],
+  "Aggregates": [
+    {
+      "ReRouteKeys": [
+        "Users"
+      ],
+      "UpstreamPathTemplate":  "/userlariTopla"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44378/"
+  }
+}
